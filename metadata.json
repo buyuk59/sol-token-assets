@@ -2,7 +2,7 @@
   "name": "USDT",
   "symbol": "USDT",
   "description": "Atlas ekosistemi icin Solana uzerinde olusturulmus utility token.",
-  "image": "https://raw.githubusercontent.com/buyuk59/sol-token-assets/main/logo.png",
+  "image": "https://raw.githubusercontent.com/buyuk59/sol-token-assets/main/logo.png"
   "extensions": {
     "website": "https://ornek-site.com",
     "twitter": "https://x.com/ornek_kullanici",
@@ -14,3 +14,4 @@
     "solana"
   ]
 }
+
