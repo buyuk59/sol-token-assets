@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USDT (USDT) - Solana</title>
+  <style>
+    :root {
+      --bg: #050816;
+      --card: #0b1020;
+      --accent: #4ade80;
+      --accent-soft: rgba(74, 222, 128, 0.12);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border: #1f2937;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .page {
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .card {
+      background: linear-gradient(135deg, #020617, #020617);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    .token-main {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+      background: radial-gradient(circle at top, #1f2937 0, #020617 60%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
+    .token-title {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .token-title h1 {
+      font-size: 1.6rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--text-muted);
+    }
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .pill {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--text-muted);
+    }
+    .pill.accent {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: rgba(74, 222, 128, 0.4);
+    }
+    .desc {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .info-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      padding: 16px;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 0;
+      border-bottom: 1px dashed rgba(55, 65, 81, 0.7);
+    }
+    .info-row:last-child {
+      border-bottom: none;
+    }
+    .info-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .info-value {
+      font-size: 0.85rem;
+      font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular,
+        Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: var(--text-main);
+      text-align: right;
+      word-break: break-all;
+    }
+    .link-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .chip-link {
+      font-size: 0.8rem;
+      text-decoration: none;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-main);
+      background: rgba(15, 23, 42, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .chip-link span.icon {
+      font-size: 0.9rem;
+    }
+    .chip-link:hover {
+      border-color: var(--accent);
+    }
+    .cta-card {
+      background: radial-gradient(circle at top left, #064e3b 0, #020617 45%);
+      border-radius: 20px;
+      border: 1px solid rgba(16, 185, 129, 0.6);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cta-text {
+      font-size: 0.9rem;
+      color: #d1fae5;
+    }
+    .small {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .footer {
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+    .mono {
+      font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular,
+        Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="card">
+      <div class="token-main">
+        <div class="logo-wrap">
+          <div class="logo">
+            <img src="logo.png" alt="Atlas Token Logo" />
+          </div>
+          <div class="token-title">
+            <h1>
+              USDT
+              <span class="badge">ATLS</span>
+            </h1>
+            <div class="subtitle">
+              Solana üzerinde sabit arzlı, topluluk odaklı bir SPL tokendir.
+            </div>
+            <div class="pill-row">
+              <span class="pill accent">Solana • Token-2022</span>
+              <span class="pill">6 decimals</span>
+              <span class="pill">Fixed Supply</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="desc">
+          USDT, Atlas ekosistemi içinde analiz, araçlar ve strateji katmanını
+          temsil eden deneysel bir projedir. Arz sabittir ve mint yetkisi
+          devre dışı bırakılmıştır; yeni token üretilemez.
+        </p>
+
+        <div>
+          <h2 class="section-title">Token Bilgileri</h2>
+          <div class="info-card">
+            <div class="info-row">
+              <div class="info-label">Mint Adresi</div>
+              <div class="info-value">
+               2kVmsBkszGrerQ3eXJQE657zE4Fbxx3ZRhw8whHnLFC1
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Ağ</div>
+              <div class="info-value">Solana Mainnet</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Sembol</div>
+              <div class="info-value">USDT</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Toplam Arz</div>
+              <div class="info-value">10,000,000 USDT</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Ondalık</div>
+              <div class="info-value">6</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Mint Yetkisi</div>
+              <div class="info-value">Devre dışı (none)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h2 class="section-title">Bağlantılar</h2>
+          <div class="link-chips">
+            <a
+              class="chip-link"
+              href="https://solscan.io/token/2kVmsBkszGrerQ3eXJQE657zE4Fbxx3ZRhw8whHnLFC1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="icon">🔍</span>
+              <span>Solscan</span>
+            </a>
+            <a
+              class="chip-link"
+              href="https://explorer.solana.com/address/2kVmsBkszGrerQ3eXJQE657zE4Fbxx3ZRhw8whHnLFC1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="icon">🧭</span>
+              <span>Solana Explorer</span>
+            </a>
+            <a
+              class="chip-link"
+              href="https://https://raw.githubusercontent.com/buyuk59/sol-token-assets/refs/heads/main/metadata.json"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="icon">📄</span>
+              <span>Metadata (JSON)</span>
+            </a>
+          </div>
+          <p class="small" style="margin-top: 10px;">
+            Uyarı: Bu sayfa tanıtım amaçlıdır. Herhangi bir yatırım tavsiyesi
+            içermez.
+          </p>
+        </div>
+
+        <div class="cta-card">
+          <div class="section-title">Notlar</div>
+          <div class="cta-text">
+            •USDT Token deneysel bir projedir.<br />
+            • Mint ve freeze yetkileri devre dışı bırakılarak arz sabitlenmiştir.<br />
+            • Likidite, borsa listeleri vb. tamamen ayrı süreçlerdir.
+          </div>
+          <div class="small">
+            Cüzdanınızda token eklerken <span class="mono">2kVmsBkszGrerQ3eXJQE657zE4Fbxx3ZRhw8whHnLFC1</span>
+            mint adresini kullanın.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+     USDT • Solana •
+      <span class="mono">2kVmsBkszGrerQ3eXJQE657zE4Fbxx3ZRhw8whHnLFC1</span>
+    </div>
+  </main>
+</body>
+</html>
